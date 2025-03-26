@@ -19,9 +19,6 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./03\ Finished\ Project/node_modules  # Modified path here
-          key: ${{ runner.os }}-node-${{ hashFiles('**/03 Finished Project/package-lock.json') }}  # Adjusted path for the cache key
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Install dependencies
         run: |
           cd '03 Finished Project'  # Change directory to '03 Finished Project'
@@ -45,9 +42,6 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./03\ Finished\ Project/node_modules  # Modified path here
-          key: ${{ runner.os }}-node-${{ hashFiles('**/03 Finished Project/package-lock.json') }}  # Adjusted path for the cache key
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Install dependencies
         run: |
           cd '03 Finished Project'  # Change directory to '03 Finished Project'
