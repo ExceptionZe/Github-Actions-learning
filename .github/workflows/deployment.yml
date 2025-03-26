@@ -1,32 +1,60 @@
 name: Deploy Project
-on: [push, workflow_dispatch]
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Get code
+      - name: Checkout code
         uses: actions/checkout@v3
-      - name: Install NodeJS
+      - name: Set up Node.js 18.x
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v3
+        with:
+          path: ./03\ Finished\ Project/node_modules  # Modified path here
+          key: ${{ runner.os }}-node-${{ hashFiles('**/03 Finished Project/package-lock.json') }}  # Adjusted path for the cache key
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd '03 Finished Project'  # Change directory to '03 Finished Project'
+          npm install
       - name: Run tests
-        run: npm test
+        run: |
+          cd '03 Finished Project'  # Change directory to '03 Finished Project'
+          npm test
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Get code
+      - name: Checkout code
         uses: actions/checkout@v3
-      - name: Install NodeJS
+      - name: Set up Node.js 18.x
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v3
+        with:
+          path: ./03\ Finished\ Project/node_modules  # Modified path here
+          key: ${{ runner.os }}-node-${{ hashFiles('**/03 Finished Project/package-lock.json') }}  # Adjusted path for the cache key
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd '03 Finished Project'  # Change directory to '03 Finished Project'
+          npm install
       - name: Build project
-        run: npm run build
+        run: |
+          cd '03 Finished Project'  # Change directory to '03 Finished Project'
+          npm run build
       - name: Deploy
         run: echo "Deploying ..."
