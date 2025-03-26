@@ -1,54 +1,41 @@
 name: Deploy Project
-on: 
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
+on: [push, workflow_dispatch]
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Get code
         uses: actions/checkout@v3
-      - name: Set up Node.js 18.x
+      - name: Install NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Cache Node.js dependencies
-        uses: actions/cache@v3
-        with:
-          path: ./03\ Finished\ Project/node_modules  # Modified path here
       - name: Install dependencies
         run: |
-          cd '03 Finished Project'  # Change directory to '03 Finished Project'
+          cd ./03\ Finished\ Project
           npm install
       - name: Run tests
         run: |
-          cd '03 Finished Project'  # Change directory to '03 Finished Project'
+          cd ./03\ Finished\ Project
           npm test
 
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Get code
         uses: actions/checkout@v3
-      - name: Set up Node.js 18.x
+      - name: Install NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Cache Node.js dependencies
-        uses: actions/cache@v3
-        with:
-          path: ./03\ Finished\ Project/node_modules  # Modified path here
       - name: Install dependencies
         run: |
-          cd '03 Finished Project'  # Change directory to '03 Finished Project'
+          cd ./03\ Finished\ Project
           npm install
       - name: Build project
         run: |
-          cd '03 Finished Project'  # Change directory to '03 Finished Project'
+          cd ./03\ Finished\ Project
           npm run build
       - name: Deploy
         run: echo "Deploying ..."
