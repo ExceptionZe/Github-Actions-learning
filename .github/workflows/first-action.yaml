@@ -8,3 +8,7 @@ jobs:
         run: echo "Hello World!"
       - name: Print goodbye
         run: echo "Done - bye!"
+      - name: Run script
+        run: |
+          echo "This is a script that takes two arguments:"
+          echo "Argument 1: $1"
