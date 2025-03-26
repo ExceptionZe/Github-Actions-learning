@@ -1,0 +1,3 @@
+name: Lint, Test & Deploy
+on: push
+
