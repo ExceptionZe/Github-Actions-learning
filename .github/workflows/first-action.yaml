@@ -13,3 +13,8 @@ jobs:
           echo "This is a script that takes two arguments:"
           echo "Argument 1: $1"
           echo "Argument 2: $2"
+      - name: Print inline text
+        run: > 
+          echo "This is an inline echo command.
+          some text
+          another text"
