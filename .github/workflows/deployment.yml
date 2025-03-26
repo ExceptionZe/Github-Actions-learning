@@ -1,36 +1,36 @@
-name: Deploy Project
-on: [push, workflow_dispatch]
+# name: Deploy Project
+# on: [push, workflow_dispatch]
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies and run tests
-        run: |
-          cd ./03\ Finished\ Project
-          npm install
-          npm test
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Get code
+#         uses: actions/checkout@v3
+#       - name: Install NodeJS
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
+#       - name: Install dependencies and run tests
+#         run: |
+#           cd ./03\ Finished\ Project
+#           npm install
+#           npm test
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies and build project
-        run: |
-          cd ./03\ Finished\ Project
-          npm install
-          npm run build
-      - name: Deploy
-        run: echo "Deploying ..."
+#   deploy:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Get code
+#         uses: actions/checkout@v3
+#       - name: Install NodeJS
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
+#       - name: Install dependencies and build project
+#         run: |
+#           cd ./03\ Finished\ Project
+#           npm install
+#           npm run build
+#       - name: Deploy
+#         run: echo "Deploying ..."
